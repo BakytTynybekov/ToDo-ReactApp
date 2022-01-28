@@ -1,0 +1,39 @@
+.toDoAddForm {
+  margin-bottom: 70px;
+  display: flex;
+  align-items: center;
+
+  textarea {
+    font-size: 24px;
+    font-family: Arial;
+    border-radius: 8px;
+    resize: none;
+    padding: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    min-height: 40px;
+    width: 400px;
+    margin-bottom: 15px;
+    padding-right: 80px;
+  }
+
+  button {
+    display: block;
+    border: none;
+    background-color: #282c34;
+    margin-left: -80px;
+    height: 30px;
+    width: 70px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: #adb3c2;
+      transform: scale(1.05);
+      color: #282c34;
+      cursor: pointer;
+    }
+  }
+}
