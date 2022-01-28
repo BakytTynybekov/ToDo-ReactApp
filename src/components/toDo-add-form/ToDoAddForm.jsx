@@ -5,7 +5,7 @@ class ToDoAddForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "Тут вы можете себе добавить задание",
+      value: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -18,6 +18,7 @@ class ToDoAddForm extends Component {
         <textarea
           value={this.state.value}
           onChange={this.handleChange}
+          placeholder="Тут вы можете себе добавить задание..."
           contenteditable
         />
         <button>Add</button>
