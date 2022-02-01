@@ -5,23 +5,34 @@ class ToDoAddForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      task: "",
     };
-    this.handleChange = this.handleChange.bind(this);
   }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
+  onSubmit = (e) => {
+    if (this.state.task.length < 3) return;
+    this.props.onAdd(this.state.task);
+    this.setState({
+      task: "",
+    });
+  };
+
+  onValueChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
   render() {
+    const { task } = this.state;
     return (
       <div className="toDoAddForm">
         <textarea
-          value={this.state.value}
-          onChange={this.handleChange}
+          value={task}
+          name="task"
+          onChange={this.onValueChange}
           placeholder="Тут вы можете себе добавить задание..."
           contenteditable
         />
-        <button>Add</button>
+        <button onClick={this.onSubmit}>Add</button>
       </div>
     );
   }
