@@ -2,30 +2,24 @@ import { Component } from "react";
 
 import "./tasksList.scss";
 
-class TasksList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [
-        { task: "Сходить в магазин", id: 1 },
-        { task: "Read a book", id: 2 },
-      ],
-    };
-    this.maxId = 3;
-  }
-
-  render() {
-    return (
-      <div className="tasksList">
-        {this.state.data.map((item) => (
+function TasksList({ data, onDelete }) {
+  return (
+    <div className="tasksList">
+      {data.map((item, index) => (
+        <div className="tasksList__item" id={index + 1} key={index}>
           <label>
-            <input type="checkbox" id={item.id} />
+            <input type="checkbox" className="checkbox" />
             {item.task}
           </label>
-        ))}
-      </div>
-    );
-  }
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/OOjs_UI_icon_clear-destructive.svg/1200px-OOjs_UI_icon_clear-destructive.svg.png"
+            alt=""
+            onClick={() => onDelete(item.id)}
+          />
+        </div>
+      ))}
+    </div>
+  )
 }
 
 export default TasksList;

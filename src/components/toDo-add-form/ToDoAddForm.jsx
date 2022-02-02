@@ -1,41 +1,35 @@
 import React from "react";
-import { Component } from "react";
+import { useState } from "react";
 import "./toDoAddForm.scss";
-class ToDoAddForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      task: ""
-    };
-  }
-  onSubmit = (e) => {
-    e.preventDefault();
-    this.props.onAdd(this.state.task);
-    this.setState({
-      task: ""
+
+const ToDoAddForm = ({ onAdd }) => {
+  const [state, setState] = useState({ task: "" });
+
+  const onSubmit = () => {
+    
+    if (state.task.length < 3) return;
+    onAdd(state.task);
+    setState({
+      task: "",
     });
   };
 
-  onValueChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
+
+  const onValueChange = (e) => {
+    setState({
+      task: e.target.value,
     });
   };
-  render() {
-    const { task } = this.state;
-    return (
-      <div className="toDoAddForm">
-        <textarea
-          value={task}
-          name="task"
-          onChange={this.onValueChange}
-          placeholder="Тут вы можете себе добавить задание..."
-          contenteditable
-        />
-        <button onClick={this.onSubmit}>Add</button>
-      </div>
-    );
-  }
-}
-
+  return (
+    <div className="toDoAddForm">
+      <textarea
+        value={state.task}
+        name="task"
+        onChange={onValueChange}
+        placeholder="Тут вы можете себе добавить задание..."
+      />
+      <button onClick={onSubmit}>Add</button>
+    </div>
+  );
+};
 export default ToDoAddForm;
